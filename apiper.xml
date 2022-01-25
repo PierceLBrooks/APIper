@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<apiper tab="  ">
+  <namespace name="user">
+    <header>
+<![CDATA[
+from fastapi_users import models
+]]>
+    </header>
+    <models>
+      <model type="User">
+        <content>["pass"]</content>
+        <parents>
+          <parent>models.BaseUser</parent>
+        </parents>
+      </model>
+      <model type="UserCreate">
+        <content>["pass"]</content>
+        <parents>
+          <parent>models.BaseUserCreate</parent>
+        </parents>
+      </model>
+      <model type="UserUpdate">
+        <content>["pass"]</content>
+        <parents>
+          <parent>models.BaseUserUpdate</parent>
+        </parents>
+      </model>
+      <model type="UserDB">
+        <content>["pass"]</content>
+        <parents>
+          <parent>User</parent>
+          <parent>models.BaseUserDB</parent>
+        </parents>
+      </model>
+    </models>
+  </namespace>
+  <namespace name="items">
+    <header>
+<![CDATA[
+from ..models import user
+from typing import List
+]]>
+    </header>
+  </namespace>
+  <requests>
+    <request uri="/user/email" id="UserEmail" namespace="user" method="get">
+      <parameters>
+        <parameter id="user" type="user.User" assignment="Depends(current_user)"></parameter>
+      </parameters>
+      <response>
+        <model><content>{"response_type":"int","currency":"int"}</content></model>
+        <values><content>{"response_type":"1","currency":"await util.getEmail(user.id)"}</content></values>
+      </response>
+    </request>
+    </request>
+  </requests>
+</apiper>
