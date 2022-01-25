@@ -48,10 +48,9 @@ from typing import List
         <parameter id="user" type="user.User" assignment="Depends(current_user)"></parameter>
       </parameters>
       <response>
-        <model><content>{"response_type":"int","currency":"int"}</content></model>
-        <values><content>{"response_type":"1","currency":"await util.getEmail(user.id)"}</content></values>
+        <model><content>{"response_type":"int","email":"str"}</content></model>
+        <values><content>{"response_type":"1","email":"await util.getEmail(user.id)"}</content></values>
       </response>
-    </request>
     </request>
   </requests>
 </apiper>
