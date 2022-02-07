@@ -1,0 +1,97 @@
+{
+    "tables": {
+        "user": {
+            "id": "uuid",
+            "email": "str",
+            "hashed_password": "str",
+            "name": "str",
+            "friend": "int",
+            "is_active": "bool",
+            "is_superuser": "bool",
+            "is_verified": "bool"
+        },
+        "friends": {
+            "id": "int",
+            "next": "int",
+            "userid": "uuid"
+        }
+    },
+    "inserts": {
+        "user": [
+            {
+                "id": "0",
+                "email": "",
+                "hashed_password": "",
+                "name": "",
+                "friend": "0",
+                "is_active": "true",
+                "is_superuser": "false",
+                "is_verified": "false"
+            },
+            {
+                "id": "1",
+                "email": "bob@github.com",
+                "hashed_password": "bob",
+                "name": "Bob",
+                "friend":"0",
+                "is_active": "true",
+                "is_superuser": "false",
+                "is_verified": "false"
+            },
+            {
+                "id": "2",
+                "email": "alice@github.com",
+                "hashed_password": "alice",
+                "name": "Alice",
+                "friend":"2",
+                "is_active": "true",
+                "is_superuser": "false",
+                "is_verified": "false"
+            },
+            {
+                "id": "3",
+                "email": "foobar@github.com",
+                "hashed_password": "foobar",
+                "name": "Foo Bar",
+                "friend":"1",
+                "is_active": "true",
+                "is_superuser": "false",
+                "is_verified": "false"
+            }
+        ],
+        "friends": [
+            {
+                "id": "0",
+                "next": "0",
+                "userid": "0"
+            },
+            {
+                "id": "1",
+                "next": "2",
+                "userid": "1"
+            },
+            {
+                "id": "2",
+                "next": "0",
+                "userid": "2"
+            }
+        ]
+    },
+    "references": {
+        "user": {
+            "friends": {
+                "id": [
+                    "friend"
+                ]
+            }
+        },
+        "friends": {
+            "user": {
+                "id": [
+                    "userid"
+                ]
+            }
+        }
+    }
+}
+

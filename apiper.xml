@@ -4,6 +4,10 @@
     <header>
 <![CDATA[
 from fastapi_users import models
+from typing import List
+from pydantic.types import UUID4
+Int = int
+Str = str
 ]]>
     </header>
     <models>
@@ -50,6 +54,29 @@ from typing import List
       <response>
         <model><content>{"response_type":"int","email":"str"}</content></model>
         <values><content>{"response_type":"1","email":"await util.getEmail(user.id)"}</content></values>
+      </response>
+    </request>
+    <request uri="/user/name" id="UserName" namespace="user" method="get">
+      <parameters>
+        <parameter id="user" type="user.User" assignment="Depends(current_user)"></parameter>
+      </parameters>
+      <response>
+        <model><content>{"response_type":"int","name":"str"}</content></model>
+        <values><content>{"response_type":"2","name":"await util.getName(user.id)"}</content></values>
+      </response>
+    </request>
+    <request uri="/user/friends" id="UserFriends" namespace="user" method="get">
+      <parameters>
+        <parameter id="user" type="user.User" assignment="Depends(current_user)"></parameter>
+      </parameters>
+      <response>
+        <preamble>
+<![CDATA[
+friends = await util.getFriends(user.id)
+]]>
+        </preamble>
+        <model prefix="List[" suffix="]"><content>{"id":"int","next":"int","userid":"UUID4"}</content></model>
+        <values><content>friends</content></values>
       </response>
     </request>
   </requests>
